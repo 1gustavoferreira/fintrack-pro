@@ -52,19 +52,35 @@ async function loadTransactions() {
 }
 
 function renderTransactions(list) {
+    const transactionList = document.getElementById('transaction-list');
+    const balanceEl = document.getElementById('main-balance-display');
+    
+    if (!transactionList || !balanceEl) return;
+
     transactionList.innerHTML = '';
+    let total = 0;
+
     list.forEach(item => {
+        const amount = parseFloat(item.amount);
+        const isIncome = item.type === 'income';
+        total += isIncome ? amount : -amount;
+
         const li = document.createElement('li');
-        const color = item.type === 'income' ? 'text-green' : 'text-red';
-        const symbol = item.type === 'income' ? '+' : '-';
+        const color = isIncome ? '#22c55e' : '#ef4444';
+        const symbol = isIncome ? '+' : '-';
         
         li.innerHTML = `
             <span>${item.description}</span>
-            <span class="${color}">${symbol} R$ ${parseFloat(item.amount).toFixed(2)}</span>
+            <strong style="color: ${color}"> ${symbol} R$ ${amount.toFixed(2)}</strong>
         `;
         transactionList.appendChild(li);
     });
-}
 
+    // A MÁGICA ACONTECE AQUI
+    balanceEl.innerText = `R$ ${total.toFixed(2)}`;
+    balanceEl.style.color = total >= 0 ? '#22c55e' : '#ef4444';
+    
+    console.log("Interface atualizada com sucesso para:", total);
+}
 // Chamar ao carregar a página
 loadTransactions();

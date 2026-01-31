@@ -42,6 +42,8 @@ async function checkUser() {
         authSection.style.display = 'none';
         dashboardSection.style.display = 'block';
         document.getElementById('user-display').innerText = user.email;
+        document.getElementById('auth-section').style.display = 'none';
+        document.getElementById('dashboard-section').style.display = 'block';
         
         // Se houver uma função de carregar dados no dashboard.js, chamamos ela aqui
         if (typeof loadTransactions === 'function') {

@@ -13,6 +13,13 @@
         <h1>FinTrack <span class="green">Pro</span></h1>
         <p>Gestão Financeira com Base de Dados Real</p>
         
+        <section class="balance-cards">
+            <div class="card">
+                <h4>Saldo Atual</h4>
+                <h2 id="total-balance">R$ 0.00</h2>
+            </div>
+        </section>
+
         <form id="auth-form">
             <input type="email" id="email" placeholder="O teu e-mail" required>
             <input type="password" id="password" placeholder="A tua senha" required>
@@ -23,7 +30,7 @@
         </form>
     </div>
 
-   <div id="dashboard-section" class="container" style="display: none;">
+    <div id="dashboard-section" class="container" style="display: none;">
         <header>
             <h2>Bem-vindo, <span id="user-display"></span></h2>
             <button onclick="logout()">Sair</button>
@@ -31,24 +38,30 @@
         
         <hr>
 
-        <section class="transaction-input">
-            <h3>Nova Transação</h3>
-            <form id="transaction-form">
-                <input type="text" id="desc" placeholder="Ex: Salário, Aluguel" required>
-                <input type="number" id="amount" placeholder="Valor (R$)" step="0.01" required>
-                <select id="type">
-                    <option value="income">Entrada (+)</option>
-                    <option value="expense">Saída (-)</option>
-                </select>
-                <button type="submit">Adicionar</button>
-            </form>
+        <section class="balance-card" style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #ddd;">
+            <p style="margin: 0; color: #666; font-size: 0.9rem;">Saldo Total Disponível</p>
+            <h1 id="main-balance-display" style="margin: 5px 0; font-size: 2.5rem;">R$ 0.00</h1>
         </section>
 
-        <section class="history">
-            <h3>Histórico de Transações</h3>
-            <ul id="transaction-list">
-                </ul>
-        </section>
+        <main class="dashboard-grid">
+            <section class="transaction-input">
+                <h3>Nova Transação</h3>
+                <form id="transaction-form">
+                    <input type="text" id="desc" placeholder="Ex: Salário, Mercado" required>
+                    <input type="number" id="amount" placeholder="Valor (R$)" step="0.01" required>
+                    <select id="type">
+                        <option value="income">Entrada (+)</option>
+                        <option value="expense">Saída (-)</option>
+                    </select>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </section>
+
+            <section class="history">
+                <h3>Histórico de Transações</h3>
+                <ul id="transaction-list"></ul>
+            </section>
+        </main>
     </div>
 
     <script src="assets/js/app.js"></script>
