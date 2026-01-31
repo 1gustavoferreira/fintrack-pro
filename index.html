@@ -23,15 +23,36 @@
         </form>
     </div>
 
-    <div id="dashboard-section" class="container" style="display: none;">
+   <div id="dashboard-section" class="container" style="display: none;">
         <header>
             <h2>Bem-vindo, <span id="user-display"></span></h2>
             <button onclick="logout()">Sair</button>
         </header>
+        
         <hr>
-        <p>A tua Etapa 1 está quase concluída!</p>
+
+        <section class="transaction-input">
+            <h3>Nova Transação</h3>
+            <form id="transaction-form">
+                <input type="text" id="desc" placeholder="Ex: Salário, Aluguel" required>
+                <input type="number" id="amount" placeholder="Valor (R$)" step="0.01" required>
+                <select id="type">
+                    <option value="income">Entrada (+)</option>
+                    <option value="expense">Saída (-)</option>
+                </select>
+                <button type="submit">Adicionar</button>
+            </form>
+        </section>
+
+        <section class="history">
+            <h3>Histórico de Transações</h3>
+            <ul id="transaction-list">
+                </ul>
+        </section>
     </div>
 
-    <script src="app.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/dashboard.js"></script>
 </body>
 </html>
