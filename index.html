@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinTrack Pro | Full-Stack</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -56,6 +57,13 @@
                         </div>
                         <button type="submit" class="btn-add">Adicionar</button>
                     </form>
+                </div>
+
+                <div class="card">
+                    <h3>Resumo Visual</h3>
+                    <div style="max-width: 250px; margin: 0 auto;">
+                        <canvas id="financeChart"></canvas>
+                    </div>
                 </div>
             </aside>
 

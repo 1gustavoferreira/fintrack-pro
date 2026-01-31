@@ -1,5 +1,14 @@
 // assets/js/auth.js
-
+// Verifica se já existe um usuário logado ao carregar a página
+window.onload = async () => {
+    const { data: { session } } = await _supabase.auth.getSession();
+    
+    if (session) {
+        showDashboard(session.user);
+    } else {
+        showAuth();
+    }
+};
 // 1. FUNÇÃO: CRIAR CONTA (Sign Up)
 document.getElementById('register-btn').addEventListener('click', async () => {
     const email = document.getElementById('email').value;
