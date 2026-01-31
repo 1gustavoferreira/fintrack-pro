@@ -55,8 +55,6 @@ function renderTransactions(list) {
     const transactionList = document.getElementById('transaction-list');
     const balanceEl = document.getElementById('main-balance-display');
     
-    if (!transactionList || !balanceEl) return;
-
     transactionList.innerHTML = '';
     let total = 0;
 
@@ -67,20 +65,40 @@ function renderTransactions(list) {
 
         const li = document.createElement('li');
         const color = isIncome ? '#22c55e' : '#ef4444';
-        const symbol = isIncome ? '+' : '-';
         
+        // Adicionamos o botão com um ícone simples (X)
         li.innerHTML = `
-            <span>${item.description}</span>
-            <strong style="color: ${color}"> ${symbol} R$ ${amount.toFixed(2)}</strong>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button onclick="deleteTransaction('${item.id}')" style="background: none; border: none; color: #cbd5e1; cursor: pointer; padding: 0 5px; font-size: 1.1rem;">×</button>
+                <span>${item.description}</span>
+            </div>
+            <strong style="color: ${color}"> ${isIncome ? '+' : '-'} R$ ${amount.toFixed(2)}</strong>
         `;
         transactionList.appendChild(li);
     });
 
-    // A MÁGICA ACONTECE AQUI
     balanceEl.innerText = `R$ ${total.toFixed(2)}`;
     balanceEl.style.color = total >= 0 ? '#22c55e' : '#ef4444';
-    
-    console.log("Interface atualizada com sucesso para:", total);
 }
+
+async function deleteTransaction(id) {
+    const confirmacao = confirm("Tens a certeza que desejas eliminar esta transação?");
+    
+    if (confirmacao) {
+        const { error } = await _supabase
+            .from('transactions')
+            .delete()
+            .eq('id', id);
+
+        if (error) {
+            console.error("Erro ao eliminar:", error.message);
+            alert("Não foi possível eliminar a transação.");
+        } else {
+            // Recarrega a lista e o saldo automaticamente
+            loadTransactions();
+        }
+    }
+}
+
 // Chamar ao carregar a página
 loadTransactions();

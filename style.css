@@ -93,3 +93,9 @@ input, select {
 /* Lista */
 ul { list-style: none; padding: 0; }
 li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+
+/* Estilo para o botão de eliminar na lista */
+li button:hover {
+    color: #ef4444 !important; /* Fica vermelho ao passar o rato */
+    transform: scale(1.2);
+}
