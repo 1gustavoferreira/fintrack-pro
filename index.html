@@ -5,65 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinTrack Pro | Full-Stack</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
-    <div id="auth-section" class="container">
-        <h1>FinTrack <span class="green">Pro</span></h1>
-        <p>Gestão Financeira com Base de Dados Real</p>
-        
-        <section class="balance-cards">
-            <div class="card">
-                <h4>Saldo Atual</h4>
-                <h2 id="total-balance">R$ 0.00</h2>
-            </div>
-        </section>
-
-        <form id="auth-form">
-            <input type="email" id="email" placeholder="O teu e-mail" required>
-            <input type="password" id="password" placeholder="A tua senha" required>
-            <div class="actions">
-                <button type="submit" id="login-btn">Entrar</button>
-                <button type="button" id="register-btn" class="secondary">Criar Conta</button>
-            </div>
-        </form>
+    <div id="auth-section" class="auth-wrapper">
+        <div class="auth-card">
+            <header>
+                <h1>FinTrack <span>Pro</span></h1>
+                <p>Gestão financeira minimalista</p>
+            </header>
+            <form id="auth-form">
+                <input type="email" id="email" placeholder="E-mail" required>
+                <input type="password" id="password" placeholder="Senha" required>
+                <div class="auth-buttons">
+                    <button type="submit" class="btn-main">Entrar</button>
+                    <button type="button" id="register-btn" class="btn-sub">Criar Conta</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <div id="dashboard-section" class="container" style="display: none;">
-        <header>
-            <h2>Bem-vindo, <span id="user-display"></span></h2>
-            <button onclick="logout()">Sair</button>
+    <div id="dashboard-section" class="dash-wrapper" style="display: none;">
+        <header class="dash-nav">
+            <div class="logo">FinTrack <span>Pro</span></div>
+            <div class="user-info">
+                <span id="user-display"></span>
+                <button onclick="logout()" class="btn-exit">Sair</button>
+            </div>
         </header>
-        
-        <hr>
 
-        <section class="balance-card" style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #ddd;">
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Saldo Total Disponível</p>
-            <h1 id="main-balance-display" style="margin: 5px 0; font-size: 2.5rem;">R$ 0.00</h1>
-        </section>
+        <main class="dash-grid">
+            <aside class="dash-column">
+                <div class="card balance-card">
+                    <small>Saldo Disponível</small>
+                    <h1 id="main-balance-display">R$ 0.00</h1>
+                </div>
 
-        <main class="dashboard-grid">
-            <section class="transaction-input">
-                <h3>Nova Transação</h3>
-                <form id="transaction-form">
-                    <input type="text" id="desc" placeholder="Ex: Salário, Mercado" required>
-                    <input type="number" id="amount" placeholder="Valor (R$)" step="0.01" required>
-                    <select id="type">
-                        <option value="income">Entrada (+)</option>
-                        <option value="expense">Saída (-)</option>
-                    </select>
-                    <button type="submit">Adicionar</button>
-                </form>
-            </section>
+                <div class="card">
+                    <h3>Nova Transação</h3>
+                    <form id="transaction-form">
+                        <input type="text" id="desc" placeholder="Descrição" required>
+                        <div class="row">
+                            <input type="number" id="amount" placeholder="Valor" step="0.01" required>
+                            <select id="type">
+                                <option value="income">Entrada</option>
+                                <option value="expense">Saída</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-add">Adicionar</button>
+                    </form>
+                </div>
+            </aside>
 
-            <section class="history">
-                <h3>Histórico de Transações</h3>
-                <ul id="transaction-list"></ul>
+            <section class="dash-column">
+                <div class="card">
+                    <h3>Histórico de Transações</h3>
+                    <ul id="transaction-list"></ul>
+                </div>
             </section>
         </main>
     </div>
-
     <script src="assets/js/app.js"></script>
     <script src="assets/js/auth.js"></script>
     <script src="assets/js/dashboard.js"></script>
