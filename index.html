@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack Pro | Full-Stack</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <div id="auth-section" class="container">
+        <h1>FinTrack <span class="green">Pro</span></h1>
+        <p>Gestão Financeira com Base de Dados Real</p>
+        
+        <form id="auth-form">
+            <input type="email" id="email" placeholder="O teu e-mail" required>
+            <input type="password" id="password" placeholder="A tua senha" required>
+            <div class="actions">
+                <button type="submit" id="login-btn">Entrar</button>
+                <button type="button" id="register-btn" class="secondary">Criar Conta</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="dashboard-section" class="container" style="display: none;">
+        <header>
+            <h2>Bem-vindo, <span id="user-display"></span></h2>
+            <button onclick="logout()">Sair</button>
+        </header>
+        <hr>
+        <p>A tua Etapa 1 está quase concluída!</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
